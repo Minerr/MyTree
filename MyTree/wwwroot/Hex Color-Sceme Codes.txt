@@ -1,0 +1,18 @@
+#6CA337 		-  	Green		(Navbar)
+
+#666A6B 		-  	Darkest gray	(Headings)
+#7B8D93 		-  	Darker gray
+#ACB3B5		- 	Dark gray		(Standard button)
+#BFD3DE		-  	Blue gray
+#CFD8DC		-  	Gray
+
+#DBF3FF		-  	Light blue  	(Boy)
+#FFADB1		-  	Pink  		(Female)
+
+#910000		-	Dark red 		(Hint used)
+#E84048		- 	Red 		(Delete button)
+
+#897400		-	Dark gold 	(Gold star)
+#CFB000		-	Gold		(Gold emblem)
+
+#FFFFFF		-	White
