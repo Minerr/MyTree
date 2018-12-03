@@ -1,4 +1,4 @@
-#6CA337 		-  	Green		(Navbar)
+#70ac37		-  	Green		(Navbar)
 
 #666A6B 		-  	Darkest gray	(Headings)
 #7B8D93 		-  	Darker gray

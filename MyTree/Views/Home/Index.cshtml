@@ -2,46 +2,44 @@
 	ViewData["Title"] = "Home Page";
 }
 
-@section Scripts {
+@section Stylesheets {
 	<style>
 		.frontpage-ad-overlay {
-			background: url("~/images/wide_default.png") no-repeat scroll #91989a;
+			background-color: #ACB3B5;
+			overflow: hidden;
 			height: 350px;
 			text-align: center;
-			padding-top: 4rem;
 		}
 
-		.certification img {
-			width: 80px;
-			height: 80px;
-			margin-right: 1rem;
+		.card-img-overlay {
+			background-color: rgba(0, 0, 0, 0.4);
 		}
 
-		.card {
-			
-		}
 	</style>
 }
 
 <div class="frontpage-ad-overlay card border-0 text-white">
-	<h2 class="pb-4">MyTree offers an extensive training program to treat dementia.</h2>
-	<h4 class="pb-3">Share your results, statistics and experience with your doctor and family members.</h4>
-	<h5 class="font-italic">100% Guaranteed results, or your money back!</h5>
+	<img src="~/images/photoshoot_03.jpg" class="card-img img-fluid"/>
+	<div class="card-img-overlay pt-5">
+		<h2 class="pb-4">MyTree offers an extensive training program to treat dementia.</h2>
+		<h4 class="pb-3">Share your results, statistics and experience with your doctor and family members.</h4>
+		<h5 class="font-italic">100% Guaranteed results, or your money back!</h5>
+	</div>
 </div>
 
 <div class="container">
 	<div class="row p-5">
-		<div class="certification col d-flex align-items-center font-italic">
-			<img src="~/images/gold_emblem.png" class="rounded-circle" />
-			<h5>9/10 Doctors recommends MyTree!</h5>
+		<div class="col d-flex align-items-center font-italic">
+			<img src="~/images/gold_emblem.png" class="icon-large img-fluid rounded-circle"/>
+			<h5 class="pl-3">9/10 Doctors recommends MyTree!</h5>
 		</div>
-		<div class="certification col d-flex align-items-center font-italic">
-			<img src="~/images/gold_emblem.png" class="rounded-circle" />
-			<h5 class="align">Positive feedback from more than 4 healthcare proffesionals.</h5>
+		<div class="col d-flex align-items-center font-italic">
+			<img src="~/images/gold_emblem.png" class="icon-large img-fluid rounded-circle"/>
+			<h5 class="pl-3">Positive feedback from more than 4 healthcare proffesionals.</h5>
 		</div>
-		<div class="certification col d-flex align-items-center font-italic">
-			<img src="~/images/gold_emblem.png" class="rounded-circle" />
-			<h5>Easy integration for doctors. Your health matters!</h5>
+		<div class="col d-flex align-items-center font-italic">
+			<img src="~/images/gold_emblem.png" class="icon-large img-fluid rounded-circle"/>
+			<h5 class="pl-3">Easy integration for doctors. Your health matters!</h5>
 		</div>
 	</div>
 
