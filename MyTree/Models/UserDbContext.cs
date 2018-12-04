@@ -9,7 +9,6 @@ namespace MyTree.Models
 	public class UserDbContext : DbContext
 	{
 		public DbSet<User> Users { get; set; }
-		public DbSet<UserRight> UserRights { get; set; }
 
 		public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
 		{
@@ -20,6 +19,16 @@ namespace MyTree.Models
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>()
+				.Property(p => p.Username)
+				.IsRequired()
+				.HasMaxLength(50);
+		
+			modelBuilder.Entity<User>()
+				.Property(p => p.Password)
+				.IsRequired()
+				.HasMaxLength(50);
+
+			modelBuilder.Entity<User>()
 				.Property(p => p.FirstName)
 				.IsRequired()
 				.HasMaxLength(50);
@@ -29,6 +38,19 @@ namespace MyTree.Models
 				.IsRequired()
 				.HasMaxLength(50);
 
+			modelBuilder.Entity<User>()
+				.Property(p => p.Email)
+				.IsRequired()
+				.HasMaxLength(50);
+
+			modelBuilder.Entity<User>()
+				.Property(p => p.PhoneNumber)
+				.IsRequired()
+				.HasMaxLength(50);
+
+			modelBuilder.Entity<User>()
+				.Property(p => p.UserRole)
+				.HasConversion<string>();
 		}
 	}
 }
