@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 
 namespace MyTree.Models
 {
-	public enum UserRights
+	public enum Functionality
 	{
 		EditFamilyTree,
 		ShowStatistics,
 		GiveAccess,
 		PlayGame
+	}
+
+	public class UserRight : Entity
+	{
+		public Functionality Functionality { get; set; }
 	}
 }

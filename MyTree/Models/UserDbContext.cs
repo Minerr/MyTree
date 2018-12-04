@@ -9,6 +9,7 @@ namespace MyTree.Models
 	public class UserDbContext : DbContext
 	{
 		public DbSet<User> Users { get; set; }
+		public DbSet<UserRight> UserRights { get; set; }
 
 		public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
 		{
@@ -27,7 +28,6 @@ namespace MyTree.Models
 				.Property(p => p.LastName)
 				.IsRequired()
 				.HasMaxLength(50);
-
 
 		}
 	}
