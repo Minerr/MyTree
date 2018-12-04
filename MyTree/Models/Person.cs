@@ -14,12 +14,10 @@ namespace MyTree.Models
 			get { return FirstName + " " + LastName; }
 		}
 
-		public Person(string firstName, string lastName)
-		{
-			FirstName = firstName;
-			LastName = lastName;
-		}
+		public Address Address { get; set; }
 
-
+		public Person ParentOne { get; set; }
+		public Person ParentTwo { get; set; }
+		public Person Partner { get; set; }
 	}
 }

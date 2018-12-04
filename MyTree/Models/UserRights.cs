@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace MyTree.Models
 {
-	public abstract class Entity
+	public enum UserRights
 	{
-		public int Id { get; set; }
-
+		EditFamilyTree,
+		ShowStatistics,
+		GiveAccess,
+		PlayGame
 	}
 }

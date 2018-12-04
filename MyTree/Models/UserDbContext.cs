@@ -6,29 +6,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MyTree.Models
 {
-	public class ProfileDbContext : DbContext
+	public class UserDbContext : DbContext
 	{
-		public DbSet<Person> Profiles { get; set; }
+		public DbSet<User> Users { get; set; }
 
-		public ProfileDbContext(DbContextOptions<ProfileDbContext> options) : base(options)
+		public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
 		{
 
 		}
 
+		// Fluent API
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Person>()
+			modelBuilder.Entity<User>()
 				.Property(p => p.FirstName)
 				.IsRequired()
 				.HasMaxLength(50);
 
-			modelBuilder.Entity<Person>()
+			modelBuilder.Entity<User>()
 				.Property(p => p.LastName)
 				.IsRequired()
 				.HasMaxLength(50);
-
-			modelBuilder.Entity<Person>()
-				.Ignore(p => p.FullName);
 
 
 		}
