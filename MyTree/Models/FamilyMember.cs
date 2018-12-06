@@ -7,11 +7,10 @@ namespace MyTree.Models
 {
 	public class FamilyMember : Entity
 	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public Address Address { get; set; }
-		public FamilyMember ParentOne { get; set; }
-		public FamilyMember ParentTwo { get; set; }
-		public FamilyMember Partner { get; set; }
+		public Person Person { get; set; }
+		public Person ParentOne { get; set; }
+		public Person ParentTwo { get; set; }
+		public Person Partner { get; set; }
+
 	}
 }

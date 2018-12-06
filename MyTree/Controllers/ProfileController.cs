@@ -8,6 +8,9 @@ namespace MyTree.Controllers
 {
     public class ProfileController : Controller
     {
+
+		Models.UserDbContext userDbContext;
+
         public IActionResult Index()
         {
             return View();
