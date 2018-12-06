@@ -9,6 +9,7 @@ namespace MyTree.Models
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
+		public Address Address { get; set; }
 		public FamilyMember ParentOne { get; set; }
 		public FamilyMember ParentTwo { get; set; }
 		public FamilyMember Partner { get; set; }

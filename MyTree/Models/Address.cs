@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyTree.Models
 {
-	public class Address
+	public class Address : Entity
 	{
 		public string Street { get; set; }
 		public string City { get; set; }

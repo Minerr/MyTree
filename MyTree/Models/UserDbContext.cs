@@ -9,6 +9,7 @@ namespace MyTree.Models
 	public class UserDbContext : DbContext
 	{
 		public DbSet<User> Users { get; set; }
+		public DbSet<FamilyMember> FamilyMembers { get; set; }
 
 		public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
 		{
