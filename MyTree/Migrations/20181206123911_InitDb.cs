@@ -13,14 +13,15 @@ namespace MyTree.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Street = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<int>(nullable: false),
-                    Country = table.Column<string>(nullable: true)
+                    Street = table.Column<string>(maxLength: 200, nullable: false),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
+                    ZipCode = table.Column<int>(maxLength: 50, nullable: false),
+                    Country = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Address", x => x.Id);
+                    table.UniqueConstraint("AK_Address_Street_ZipCode_Country", x => new { x.Street, x.ZipCode, x.Country });
                 });
 
             migrationBuilder.CreateTable(
@@ -48,8 +49,8 @@ namespace MyTree.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
                     AddressId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

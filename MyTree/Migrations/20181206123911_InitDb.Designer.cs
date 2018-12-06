@@ -10,7 +10,7 @@ using MyTree.Models;
 namespace MyTree.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20181206114311_InitDb")]
+    [Migration("20181206123911_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,15 +27,23 @@ namespace MyTree.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
-                    b.Property<string>("Country");
+                    b.Property<string>("Country")
+                        .IsRequired();
 
-                    b.Property<string>("Street");
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
-                    b.Property<int>("ZipCode");
+                    b.Property<int>("ZipCode")
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("Street", "ZipCode", "Country");
 
                     b.ToTable("Address");
                 });
@@ -48,9 +56,13 @@ namespace MyTree.Migrations
 
                     b.Property<int?>("AddressId");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 

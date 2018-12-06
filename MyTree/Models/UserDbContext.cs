@@ -10,6 +10,7 @@ namespace MyTree.Models
 	{
 		public DbSet<User> Users { get; set; }
 		public DbSet<FamilyMember> FamilyMembers { get; set; }
+		public DbSet<Address> Address { get; set; }
 
 		public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
 		{
@@ -23,35 +24,62 @@ namespace MyTree.Models
 				.Property(p => p.Username)
 				.IsRequired()
 				.HasMaxLength(50);
-		
 			modelBuilder.Entity<User>()
 				.Property(p => p.Password)
 				.IsRequired()
 				.HasMaxLength(50);
-
 			modelBuilder.Entity<User>()
 				.Property(p => p.FirstName)
 				.IsRequired()
 				.HasMaxLength(50);
-
 			modelBuilder.Entity<User>()
 				.Property(p => p.LastName)
 				.IsRequired()
 				.HasMaxLength(50);
-
 			modelBuilder.Entity<User>()
 				.Property(p => p.Email)
 				.IsRequired()
 				.HasMaxLength(50);
-
 			modelBuilder.Entity<User>()
 				.Property(p => p.PhoneNumber)
 				.IsRequired()
 				.HasMaxLength(50);
-
 			modelBuilder.Entity<User>()
 				.Property(p => p.UserRole)
+				.IsRequired()
 				.HasConversion<string>();
+
+
+			modelBuilder.Entity<Address>()
+				.HasAlternateKey(a => new { a.Street, a.ZipCode, a.Country });
+
+
+			modelBuilder.Entity<Address>()
+				.Property(a => a.City)
+				.IsRequired()
+				.HasMaxLength(100);
+			modelBuilder.Entity<Address>()
+				.Property(a => a.ZipCode)
+				.IsRequired()
+				.HasMaxLength(50);
+			modelBuilder.Entity<Address>()
+				.Property(a => a.Street)
+				.IsRequired()
+				.HasMaxLength(200);
+
+			modelBuilder.Entity<FamilyMember>()
+				.Property(f => f.FirstName)
+				.IsRequired()
+				.HasMaxLength(50);
+			modelBuilder.Entity<FamilyMember>()
+				.Property(f => f.LastName)
+				.IsRequired()
+				.HasMaxLength(50);
+			//modelBuilder.Entity<FamilyMember>()
+			//	.Property(f => f.LastName)
+			//	.IsRequired()
+			//	.HasMaxLength(50);
+
 		}
 	}
 }
