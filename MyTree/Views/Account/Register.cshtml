@@ -1,0 +1,53 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model MyTree.Models.Account.RegisterViewModel
+
+@{
+	ViewData["Title"] = "Register user";
+}
+
+@section Stylesheets {
+	<style>
+		body {
+			background-color: #DBF3FF;
+		}
+
+		.navbar {
+			margin-bottom: 30px;
+		}
+
+		.register {
+			width: 500px;
+			padding: 50px;
+		}
+
+	</style>
+}
+
+<div class="container d-flex justify-content-center">
+	<div class="register card">
+		<form asp-controller="Account" asp-action="Register" method="post" role="form">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Email" class="control-label"></label>
+				<input type="email" asp-for="Email" class="form-control" placeholder="Email" />
+				<span asp-validation-for="Email" class="field-validation-error text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password" class="control-label"></label>
+				<input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+				<span asp-validation-for="Password" class="field-validation-error text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ConfirmPassword" class="control-label"></label>
+				<input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password" />
+				<span asp-validation-for="ConfirmPassword" class="field-validation-error text-danger"></span>
+			</div>
+			<div class="d-flex">
+				<button type="submit" class="btn btn-primary btn-block mr-3">Register</button>
+				<a asp-controller="Account" asp-action="SignIn" class="btn btn-secondary btn-block m-0">
+					Cancel
+				</a>
+			</div>
+		</form>
+	</div>
+</div>

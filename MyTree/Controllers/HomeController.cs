@@ -10,6 +10,13 @@ namespace MyTree.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly MyTreeDbContext _userDbContext;
+
+		public HomeController(MyTreeDbContext context)
+		{
+			_userDbContext = context;
+		}
+
 		public IActionResult Index()
 		{
 			return View();
@@ -17,19 +24,10 @@ namespace MyTree.Controllers
 
 		public IActionResult About()
 		{
-			ViewData["Message"] = "Your application description page.";
-
 			return View();
 		}
 
 		public IActionResult Contact()
-		{
-			ViewData["Message"] = "Your contact page.";
-
-			return View();
-		}
-
-		public IActionResult Privacy()
 		{
 			return View();
 		}
@@ -38,12 +36,6 @@ namespace MyTree.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
-
-
-		public IActionResult SignIn()
-		{
-			return View();
 		}
 	}
 }

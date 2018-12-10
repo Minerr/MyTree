@@ -8,8 +8,8 @@ using MyTree.Models;
 
 namespace MyTree.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MyTreeDbContext))]
+    partial class MyTreeDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -97,44 +97,6 @@ namespace MyTree.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("People");
-                });
-
-            modelBuilder.Entity("MyTree.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("UserRole")
-                        .IsRequired();
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MyTree.Models.FamilyMember", b =>

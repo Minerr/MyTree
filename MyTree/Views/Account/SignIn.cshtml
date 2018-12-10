@@ -1,0 +1,79 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model MyTree.Models.Account.SignInViewModel
+
+@{
+	ViewData["Title"] = "Sign in";
+}
+
+@section Stylesheets {
+	<style>
+		body {
+			background-color: #DBF3FF;
+		}
+
+		.navbar {
+			margin-bottom: 30px;
+		}
+
+		.sign-in {
+			width: 500px;
+			padding: 50px;
+		}
+
+		.divider {
+			height: 3px;
+			background-color: #7B8D93;
+			margin: 20px 0px;
+			overflow: hidden;
+		}
+
+		.divider-space {
+			height: 40px;
+			width: 50px;
+			background-color: white;
+			margin-left: 43%;
+			margin-left: calc(50% - 25px);
+			text-align: center;
+			padding: 5px 0 0 0;
+			color: #7B8D93;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-weight: bold;
+			font-size: 1.1rem;
+		}
+	</style>
+}
+
+<div class="container d-flex justify-content-center">
+	<div class="sign-in card">
+		<form asp-controller="Account" asp-action="SignIn" method="post" role="form">
+			<div asp-validation-summary="All" class="input-validation-error text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Email" class="control-label"></label>
+				<input type="email" asp-for="Email" class="form-control" placeholder="Email" />
+				<span asp-validation-for="Email" class="field-validation-error text-danger"></span>
+
+			</div>
+			<div class="form-group">
+				<label asp-for="Password" class="control-label"></label>
+				<input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+				<span asp-validation-for="Password" class="field-validation-error text-danger"></span>
+			</div>
+			<div class="form-check">
+				<div class="form-check-label d-flex mb-3">
+					<input type="checkbox" asp-for="RememberMe" class="checkbox mr-3" />
+					<p>Remember me?</p>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+		</form>
+
+		<div class="card border-0  align-items-center">
+			<img class="divider card-img" />
+			<div class="divider-space card-img-overlay">or</div>
+		</div>
+
+		<a asp-controller="Account" asp-action="Register" class="btn btn-secondary btn-block">
+			Not a user? Register here
+		</a>
+	</div>
+</div>

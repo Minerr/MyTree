@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -17,13 +23,28 @@
 				<img src="~/images/icon_logo.png" class="icon-medium img-fluid rounded-circle mr-3" />
 				MyTree
 			</a>
-			<div class="d-flex">
-				<a asp-controller="Home" asp-action="Index" class="nav-link">Pricing</a>
-				<a asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a>
-				<a asp-controller="Home" asp-action="SignIn" class="nav-link">
-					Sign in
-					<img src="~/images/UserIcon_default.png" class="icon img-fluid rounded-circle ml-3" />
-				</a>
+			<div class="d-flex align-items-center">
+				<a asp-controller="Home" asp-action="Index" class="nav-link ">Pricing</a>
+				<a asp-controller="User" asp-action="Index" class="nav-link">Contact</a>
+
+
+				@if(SignInManager.IsSignedIn(User))
+				{
+					<form id="signOut" role="form" asp-controller="Account" asp-action="SignOut">
+						<button type="submit" value="Sign out" class="btn-invisible btn btn-block">
+							Sign out
+							<img src="~/images/UserIcon_default.png" class="icon img-fluid rounded-circle ml-3" />
+						</button>
+					</form>
+				}
+				else
+				{
+					<a asp-controller="Account" asp-action="SignIn" class="btn-invisible btn btn-block">
+						Sign in
+						<img src="~/images/UserIcon_default.png" class="icon img-fluid rounded-circle ml-3" />
+					</a>
+				}
+
 			</div>
 		</div>
 	</nav>

@@ -67,3 +67,12 @@ for details on configuring this project to bundle and minify static web assets. 
 	font-size: 1.5rem;
 	padding: 1.25rem;
 }
+
+.btn-invisible {
+	background-color: rgba(0,0,0,0);
+}
+
+.checkbox {
+	width: 25px;
+	height: 25px;
+}
