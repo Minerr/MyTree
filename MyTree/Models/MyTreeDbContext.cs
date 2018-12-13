@@ -38,7 +38,11 @@ namespace MyTree.Models
 				.IsRequired()
 				.HasMaxLength(200);
 
-			
+
+			modelBuilder.Entity<Person>()
+				.Property(p => p.FamilyId)
+				.IsRequired();
+
 			modelBuilder.Entity<Person>()
 				.Property(p => p.FirstName)
 				.IsRequired()
@@ -53,6 +57,11 @@ namespace MyTree.Models
 				.Property(p => p.Birthday)
 				.IsRequired()
 				.HasColumnType("DateTime2");
+
+
+			modelBuilder.Entity<FamilyMember>()
+				.Property(f => f.FamilyId)
+				.IsRequired();
 
 		}
 	}

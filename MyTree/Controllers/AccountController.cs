@@ -40,7 +40,7 @@ namespace MyTree.Controllers
 
 				if(result.Succeeded)
 				{
-					return RedirectToAction("Index", "User");
+					return RedirectToAction("Index", "Profile");
 				}
 				else
 				{
@@ -50,6 +50,8 @@ namespace MyTree.Controllers
 					}
 				}
 			}
+
+
 
 			return View(model);
 		}
@@ -61,8 +63,9 @@ namespace MyTree.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> SignIn(SignInViewModel model)
+		public async Task<IActionResult> SignIn(SignInViewModel model, string returnUrl = null)
 		{
+			ViewData["ReturnURL"] = returnUrl;
 			if(ModelState.IsValid)
 			{
 				var result = await _signInManager.PasswordSignInAsync(
@@ -70,8 +73,15 @@ namespace MyTree.Controllers
 
 				if(result.Succeeded)
 				{
-					// Redirect to user page
-					return RedirectToAction("Index", "User");
+					// Redirect to profile page
+					if(Url.IsLocalUrl(returnUrl))
+					{
+						return Redirect(returnUrl);
+					}
+					else
+					{
+						return RedirectToAction("Index", "Profile");
+					}
 				}
 				else
 				{

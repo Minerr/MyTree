@@ -6,7 +6,7 @@ for details on configuring this project to bundle and minify static web assets. 
 	border-bottom: 1px solid #609231;
 }
 
-.navbar-fixed-top a {
+.navbar-fixed-top a, .navbar-fixed-top button {
 	line-height: 35px;
 	font-size: 1.3rem;
 	font-weight: 400;
@@ -14,8 +14,9 @@ for details on configuring this project to bundle and minify static web assets. 
 	color: white;
 }
 
-.navbar-fixed-top a:hover {
+.navbar-fixed-top a:hover, .navbar-fixed-top button:hover {
 	color: #DBF3FF;
+	text-decoration: none;
 }
 
 .navbar-fixed-top navbar-brand {
@@ -70,6 +71,8 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .btn-invisible {
 	background-color: rgba(0,0,0,0);
+	border: 0;
+	color: white;
 }
 
 .checkbox {

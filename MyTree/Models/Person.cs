@@ -7,6 +7,7 @@ namespace MyTree.Models
 {
 	public class Person : Entity
 	{
+		public int FamilyId { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public Address Address { get; set; }
