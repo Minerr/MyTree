@@ -1,0 +1,235 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model MyTree.Models.Profile.AddFamilyMemberViewModel
+
+@{
+	ViewData["Title"] = "Exercise";
+}
+
+@section Stylesheets {
+	<style>
+
+		/* Family Tree Container */
+		#familyTreeContainer {
+			min-height: 600px;
+			/*overflow: scroll;*/
+			user-select: none;
+		}
+
+		#familyTreeContainer .row {
+			margin-bottom: 6rem;
+		}
+
+		.family-member {
+			width: 200px;
+		}
+
+		.family-member-top {
+			height: 135px;
+		}
+
+		.family-member-body {
+			background-color: #e3e8ea;
+			overflow: hidden;
+			text-align: center;
+		}
+
+
+		.hintbar {
+			background-color: #BFD3DE;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 350px;
+			border-right: 1px solid #ACB3B5;
+			z-index: 5;
+		}
+
+		.hintbar-content {
+			padding: 35px;
+			padding-top: 100px;
+		}
+
+		.hintbar-video {
+			width: 275px;
+			height: 200px;
+			background-color: #212529;
+			color: lightgray;
+			font-size: 6rem;
+		}
+
+		.hintbar-number {
+			background-color: rgba(0,0,0,0);
+			border: 0;
+			font-size: 2rem;
+			text-align: center;
+			color: white;
+		}
+	</style>
+}
+
+@section Scripts {
+
+}
+
+<div class="hintbar user-select-none h-100">
+	<div class="hintbar-content">
+		<h1>Who is this?</h1>
+		<div id="hintbarPersonImage" class="hintbar-video d-flex justify-content-center align-items-center">
+			<i class="fas fa-user"></i>
+		</div>
+		<br />
+		<h1>Hints used:</h1>
+		<div class="d-flex justify-content-between">
+			<div class="hintbar-number card">
+				<i class="fas fa-circle text-primary icon-medium"></i>
+				<div class="card-img-overlay font-weight-bold p-0">
+					1
+				</div>
+			</div>
+			<div class="hintbar-number card">
+				<i class="fas fa-circle text-primary icon-medium"></i>
+				<div class="card-img-overlay font-weight-bold p-0">
+					2
+				</div>
+			</div>
+			<div class="hintbar-number card">
+				<i class="fas fa-circle text-primary icon-medium"></i>
+				<div class="card-img-overlay font-weight-bold p-0">
+					3
+				</div>
+			</div>
+			<div class="hintbar-number card">
+				<i class="fas fa-circle text-primary icon-medium"></i>
+				<div class="card-img-overlay font-weight-bold p-0">
+					4
+				</div>
+			</div>
+			<div class="hintbar-number card">
+				<i class="fas fa-circle text-primary icon-medium"></i>
+				<div class="card-img-overlay font-weight-bold p-0">
+					5
+				</div>
+			</div>
+		</div>
+		<br />
+		<h1>Hint 4:</h1>
+		<div id="hintSlot01" class="hintbar-video d-flex justify-content-center align-items-center">
+			<i class="fab fa-youtube"></i>
+		</div>
+		<br />
+		<h1>Hint 5:</h1>
+		<div id="hintSlot02" class="hintbar-video d-flex justify-content-center align-items-center">
+			<i class="fab fa-youtube"></i>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+
+	<h1 class="text-center m-3 mb-4">My family tree</h1>
+
+	<div id="familyTreeContainer" class="container">
+
+		@*   Row 1   *@
+		<div class="row justify-content-center">
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top female d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Samimiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top male d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Maximiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		@*   Row 2   *@
+		<div class="row justify-content-center">
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top female d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Samimiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top male d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Maximiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top male d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Maximiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top female d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Samimiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		@*   Row 3   *@
+		@*<div class="row justify-content-center">
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top female d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Samimiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="family-member card">
+					<div class="family-member-top male d-flex justify-content-center align-items-center">
+						<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
+					</div>
+					<div class="family-member-body card-body text-nowrap">
+						<h5 class="card-title m-0">Maximiliano</h5>
+						<h5 class="card-title m-0">Loremipsumdolor</h5>
+					</div>
+				</div>
+			</div>
+		</div>*@
+
+	</div>
+</div>

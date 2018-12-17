@@ -10,7 +10,5 @@ namespace MyTree.Models
 		public int FamilyId { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		public Address Address { get; set; }
-		public DateTime Birthday { get; set; }
 	}
 }

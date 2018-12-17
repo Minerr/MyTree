@@ -48,7 +48,7 @@ namespace MyTree.Controllers
 
         // POST: api/FamilyMembers
         [HttpPost]
-        public async Task<IActionResult> PostFamilyMember([FromBody] FamilyMember familyMember)
+        public async Task<IActionResult> AddFamilyMember([FromBody] FamilyMember familyMember)
         {
             if (!ModelState.IsValid || familyMember.Person == null)
             {

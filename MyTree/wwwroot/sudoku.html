@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sudoku JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="sudokuLayout.css">
+    <script src="sudoku.js" defer></script>
+  </head>
+  <body>
+    <h1>Sudoku made with JavaScript & CSS</h1><br>
+    <div class="Board" oncontextmenu="return false;">
+    </div>
+    <div id="GameInformation">
+
+      <div id="Controls">
+        <h2>Controls</h2><br>
+        <h3>Left-click (left mouse button):</h3>
+        <p> - Mark/unmark a number as invalid.</p><br>
+        <h3>Middle-click (scroll wheel): </h3>
+        <p> - Mark/unmark a number as the possible solution.</p><br>
+        <h3>Right-click (right mouse button): </h3>
+        <p> - Choose/unchoose a number as the solution.</p><br>
+      </div>
+      <select id="SudokuPicker">
+      </select>
+    </div>
+  </body>
+</html>

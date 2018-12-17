@@ -34,5 +34,20 @@ namespace MyTree.Controllers
 		{
 			return View();
 		}
+
+		public IActionResult Statistics()
+		{
+			return View();
+		}
+
+		public IActionResult GiveAccess()
+		{
+			return View();
+		}
+
+		public IActionResult FamilyTreeGame()
+		{
+			return View();
+		}
 	}
 }
