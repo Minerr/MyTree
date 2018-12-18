@@ -35,8 +35,9 @@ namespace MyTree
 			//	options.MinimumSameSitePolicy = SameSiteMode.None;
 			//});
 
-			services.AddDbContext<MyTreeDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddDbContext<MyTreeDbContext>(
+				options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+				optionsBuilder => optionsBuilder.MigrationsAssembly("MyTree")));
 
 			services.AddDbContext<IdentityDbContext>(
 				options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 

@@ -49,7 +49,7 @@ namespace MyTree.Controllers
 
         // POST: api/People
         [HttpPost]
-        public async Task<IActionResult> PostPerson([FromBody] Person person)
+        public async Task<IActionResult> AddPerson([FromBody] Person person)
         {
             if (!ModelState.IsValid)
             {

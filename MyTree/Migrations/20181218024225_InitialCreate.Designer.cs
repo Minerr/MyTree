@@ -10,7 +10,7 @@ using MyTree.Models;
 namespace MyTree.Migrations
 {
     [DbContext(typeof(MyTreeDbContext))]
-    [Migration("20181210190530_InitialCreate")]
+    [Migration("20181218024225_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,58 +21,28 @@ namespace MyTree.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyTree.Models.Address", b =>
+            modelBuilder.Entity("MyTree.Models.Family", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Country")
-                        .IsRequired();
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<int>("ZipCode")
-                        .HasMaxLength(50);
-
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("Street", "ZipCode", "Country");
-
-                    b.ToTable("Address");
+                    b.ToTable("Families");
                 });
 
-            modelBuilder.Entity("MyTree.Models.FamilyMember", b =>
+            modelBuilder.Entity("MyTree.Models.Pair", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ParentOneId");
-
-                    b.Property<int?>("ParentTwoId");
-
-                    b.Property<int?>("PartnerId");
-
-                    b.Property<int?>("PersonId");
+                    b.Property<bool>("IsTogether");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentOneId");
-
-                    b.HasIndex("ParentTwoId");
-
-                    b.HasIndex("PartnerId");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("FamilyMembers");
+                    b.ToTable("Pair");
                 });
 
             modelBuilder.Entity("MyTree.Models.Person", b =>
@@ -81,14 +51,18 @@ namespace MyTree.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AddressId");
+                    b.Property<int?>("FK_AdoptedPair");
 
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("DateTime2");
+                    b.Property<int?>("FK_ParentPair");
+
+                    b.Property<int>("FamilyId");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("Gender")
+                        .IsRequired();
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -96,35 +70,55 @@ namespace MyTree.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("FK_AdoptedPair");
+
+                    b.HasIndex("FK_ParentPair");
+
+                    b.HasIndex("FamilyId");
 
                     b.ToTable("People");
                 });
 
-            modelBuilder.Entity("MyTree.Models.FamilyMember", b =>
+            modelBuilder.Entity("MyTree.Models.PersonPair", b =>
                 {
-                    b.HasOne("MyTree.Models.Person", "ParentOne")
-                        .WithMany()
-                        .HasForeignKey("ParentOneId");
+                    b.Property<int>("PersonId");
 
-                    b.HasOne("MyTree.Models.Person", "ParentTwo")
-                        .WithMany()
-                        .HasForeignKey("ParentTwoId");
+                    b.Property<int>("PairId");
 
-                    b.HasOne("MyTree.Models.Person", "Partner")
-                        .WithMany()
-                        .HasForeignKey("PartnerId");
+                    b.HasKey("PersonId", "PairId");
 
-                    b.HasOne("MyTree.Models.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
+                    b.HasIndex("PairId");
+
+                    b.ToTable("PersonPair");
                 });
 
             modelBuilder.Entity("MyTree.Models.Person", b =>
                 {
-                    b.HasOne("MyTree.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
+                    b.HasOne("MyTree.Models.Pair")
+                        .WithMany("AdoptedChildren")
+                        .HasForeignKey("FK_AdoptedPair");
+
+                    b.HasOne("MyTree.Models.Pair")
+                        .WithMany("Children")
+                        .HasForeignKey("FK_ParentPair");
+
+                    b.HasOne("MyTree.Models.Family", "Family")
+                        .WithMany("People")
+                        .HasForeignKey("FamilyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MyTree.Models.PersonPair", b =>
+                {
+                    b.HasOne("MyTree.Models.Pair", "Pair")
+                        .WithMany("Partners")
+                        .HasForeignKey("PairId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MyTree.Models.Person", "Person")
+                        .WithMany("Relationships")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyTree.Models.Profile
 {
-	public class AddFamilyMemberViewModel
+	public class AddPersonViewModel
 	{
 		[Required]
 		[DataType(DataType.Text)]
@@ -17,13 +17,13 @@ namespace MyTree.Models.Profile
 		[DataType(DataType.Text)]
 		[Display(Name = "LastName")]
 		public string LastName { get; set; }
-		
-		[Display(Name = "Add parent")]
-		public Person ParentOne { get; set; }
-		
-		[Display(Name = "Add parent")]
-		public Person ParentTwo { get; set; }
-		
+
+		[Required]
+		public Gender Gender { get; set; }
+
+		[Display(Name = "Add child")]
+		public List<Person> Children { get; set; }
+
 		[Display(Name = "Add partner")]
 		public Person Partner { get; set; }
 	}
