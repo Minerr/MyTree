@@ -9,22 +9,21 @@ namespace MyTree.Models.Profile
 	public class AddPersonViewModel
 	{
 		[Required]
-		[DataType(DataType.Text)]
-		[Display(Name = "FirstName")]
+		[Display(Name = "First name")]
 		public string FirstName { get; set; }
 
 		[Required]
-		[DataType(DataType.Text)]
-		[Display(Name = "LastName")]
+		[Display(Name = "Last name")]
 		public string LastName { get; set; }
 
 		[Required]
-		public Gender Gender { get; set; }
+		[Display(Name = "Gender")]
+		public int Gender { get; set; }
 
-		[Display(Name = "Add child")]
-		public List<Person> Children { get; set; }
+		//[Display(Name = "Add child")]
+		//public List<Person> Children { get; set; }
 
-		[Display(Name = "Add partner")]
-		public Person Partner { get; set; }
+		//[Display(Name = "Add partner")]
+		//public Person Partner { get; set; }
 	}
 }

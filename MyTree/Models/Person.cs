@@ -8,11 +8,15 @@ namespace MyTree.Models
 {
 	public class Person : Entity
 	{
-		public Family Family { get; set; }
+		public int FamilyId { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public Gender Gender { get; set; }
 		public List<PersonPair> Relationships { get; set; }
 
+		public Person()
+		{
+			Relationships = new List<PersonPair>();
+		}
 	}
 }

@@ -8,7 +8,7 @@
 #CFD8DC		-  	Gray
 #e3e8ea		-	Light gray
 
-#DBF3FF		-  	Light blue  	(Male)
+#DBF3FF	#b4deea	-  	Light blue  	(Male)
 #FFADB1		-  	Pink  		(Female)
 
 #910000		-	Dark red 		(Hint used)

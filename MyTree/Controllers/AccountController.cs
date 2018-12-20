@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyTree.Models;
 using MyTree.Models.Account;
 
 namespace MyTree.Controllers
@@ -12,11 +13,13 @@ namespace MyTree.Controllers
 	{
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly SignInManager<IdentityUser> _signInManager;
+		private readonly MyTreeDbContext _context;
 
-		public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+		public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, MyTreeDbContext context)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
+			_context = context;
 		}
 
 		[HttpGet]
@@ -50,8 +53,6 @@ namespace MyTree.Controllers
 					}
 				}
 			}
-
-
 
 			return View(model);
 		}

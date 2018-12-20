@@ -41,8 +41,11 @@ namespace MyTree.Models
 
 			modelBuilder.Entity<Family>()
 				.HasMany(f => f.People)
-				.WithOne(p => p.Family)
-				.IsRequired();
+				.WithOne()
+				.HasForeignKey(p => p.FamilyId);
+
+			modelBuilder.Entity<Family>()
+				.HasAlternateKey(f => f.CreatorId);
 
 
 			modelBuilder.Entity<Person>()
@@ -60,6 +63,9 @@ namespace MyTree.Models
 				.IsRequired()
 				.HasMaxLength(50);
 
+			modelBuilder.Entity<Person>()
+				.Property(p => p.FamilyId)
+				.IsRequired();
 
 			modelBuilder.Entity<Pair>()
 				.Property(p => p.IsTogether)

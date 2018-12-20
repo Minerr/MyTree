@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTree.Models;
 
 namespace MyTree.Migrations
 {
     [DbContext(typeof(MyTreeDbContext))]
-    partial class MyTreeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181219192057_FamilyCreatorId")]
+    partial class FamilyCreatorId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,7 +107,7 @@ namespace MyTree.Migrations
                         .WithMany("Children")
                         .HasForeignKey("FK_ParentPair");
 
-                    b.HasOne("MyTree.Models.Family")
+                    b.HasOne("MyTree.Models.Family", "Family")
                         .WithMany("People")
                         .HasForeignKey("FamilyId")
                         .OnDelete(DeleteBehavior.Cascade);

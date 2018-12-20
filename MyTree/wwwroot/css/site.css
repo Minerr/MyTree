@@ -95,10 +95,16 @@ for details on configuring this project to bundle and minify static web assets. 
 	font-size: 5rem;
 }
 
+.profile-icon-medium {
+	width: 100px;
+	height: 100px;
+	border: 2px solid #343a40;
+}
+
 .profile-icon-large {
 	width: 150px;
 	height: 150px;
-	border: 4px solid #343a40;
+	border: 3px solid #343a40;
 }
 
 .profile-icon-huge {

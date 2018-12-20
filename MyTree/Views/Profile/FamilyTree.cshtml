@@ -1,5 +1,5 @@
 ﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
-@model MyTree.Models.Profile.AddPersonViewModel
+@model MyTree.Models.Gender
 
 @{
 	ViewData["Title"] = "Adjust Family Tree";
@@ -9,12 +9,12 @@
 	<style>
 
 		/* Edit or Add Family member - Modal */
-		#familyMemberModal .modal-content {
+		#addPersonModal .modal-content {
 			width: 450px;
 			height: 500px;
 		}
 
-		#familyMemberModal .modal-header {
+		#addPersonModal .modal-header {
 			height: 150px;
 		}
 
@@ -32,7 +32,9 @@
 		}
 
 		.family-member {
-			width: 200px;
+			width: 180px;
+			max-height: 200px;
+			margin: 10px;
 		}
 
 		.family-member-top {
@@ -48,7 +50,7 @@
 }
 
 @section Scripts {
-
+	<script src="~/js/editFamilyTree.js"></script>
 }
 
 <partial name="_SettingsNavbar.cshtml" />
@@ -56,36 +58,16 @@
 
 <div class="container">
 
-	<h1 class="text-center mt-2">Adjust family tree</h1>
+	<div class="d-flex justify-content-center">
+		<h1 class="text-center mt-2 mr-3">Adjust family tree</h1>
+		<button type="button" class="btn-icon-primary btn btn-link m-0 p-0" data-toggle="modal" data-target="#addPersonModal" data-backdrop="static">
+			<i class="fas fa-plus-circle icon"></i>
+		</button>
+	</div>
+	<div id="familyTreeContainer" class="d-flex flex-wrap">
 
-	<div id="familyTreeContainer" class="">
+		<!-- Body for list of people in the family -->
 
-		@*<div class="family-member card m-2">
-				<div class="card-img-overlay d-flex justify-content-end align-items-start p-2">
-					<button type="button" class="btn-icon btn m-0 p-0" data-toggle="modal" data-target="#editFamilyMember">
-						<i class="fas fa-pen"></i>
-					</button>
-				</div>
-				<div class="family-member-top female d-flex justify-content-center align-items-center">
-					<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
-				</div>
-				<div class="family-member-body card-body text-nowrap">
-					<h5 class="card-title m-0">Maximiliano</h5>
-					<h5 class="card-title m-0">Loremipsumdolor</h5>
-				</div>
-			</div>*@
-
-		<div class="card border-0 text-center">
-			<canvas id="canvas" class="border-0">
-				Your browser does not support this canvas.
-			</canvas>
-
-			<div id="canvasOverlay" class="card-img-overlay">
-				<button type="button" class="btn-icon-primary btn btn-link m-0 p-0" data-toggle="modal" data-target="#familyMemberModal">
-					<i class="fas fa-plus-circle icon"></i>
-				</button>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -100,79 +82,51 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="familyMemberModal" tabindex="-1" role="dialog" aria-labelledby="familyMemberModal" aria-hidden="true">
+<div class="modal fade" id="addPersonModal" tabindex="-1" role="dialog" aria-labelledby="addPersonModal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="female modal-header d-flex justify-content-around align-items-center">
-				<button type="button" class="btn-icon btn btn-link">
+
+
+			<div class="modal-header d-flex justify-content-around align-items-center">
+				<button type="button" class="btn-icon btn btn-link"  onclick="SetPersonGender('@Gender.Female.ToString()')">
 					<i class="fas fa-venus icon-medium"></i>
 				</button>
+
 				<img class="icon-huge rounded-circle" src="~/images/UserIcon_default.png">
-				<button type="button" class="btn-icon btn btn-link ">
+				
+				<button type="button" class="btn-icon btn btn-link" onclick="SetPersonGender('@Gender.Male.ToString()')">
 					<i class="fas fa-mars icon-medium"></i>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form asp-controller="FamilyMember" asp-action="AddFamilyMember" method="post" role="form" class="d-block">
-					<div asp-validation-summary="All" class="text-danger"></div>
+				<div class="text-danger"></div>
 
-					<div class="container p-0 pl-2 mr-0 mb-5">
-						<div class="row mb-3">
-							<div class="col col-3 d-flex align-items-center">
-								<label asp-for="FirstName" class="control-label"></label>
-							</div>
-							<div class="col">
-								<input type="text" asp-for="FirstName" class="form-control" placeholder="First name" />
-								<span asp-validation-for="FirstName" class="field-validation-error text-danger"></span>
-							</div>
+				<div class="container p-0 pl-2 mr-0 mb-5">
+					<div class="row mb-3">
+						<div class="col col-3 d-flex align-items-center">
+							<label class="control-label">First name</label>
 						</div>
-						<div class="row mb-3">
-							<div class="col col-3 d-flex align-items-center">
-								<label asp-for="LastName" class="control-label"></label>
-							</div>
-							<div class="col">
-								<input type="text" asp-for="FirstName" class="form-control" placeholder="First name" />
-								<span asp-validation-for="FirstName" class="field-validation-error text-danger"></span>
-							</div>
+						<div class="col form-group">
+							<input type="text" id="inputFirstName" class="form-control" placeholder="First name" />
+							<span class="field-validation-error text-danger"></span>
 						</div>
-						@*<div class="row mb-3">
-							<div class="col col-3 d-flex align-items-center">
-								<label asp-for="ParentOne" class="control-label"></label>
-							</div>
-							<div class="col">
-								<select asp-for="ParentTwo" class="form-control">
-									<option>None</option>
-									<option>None</option>
-									<option>None</option>
-									<option>None</option>
-									<option>None</option>
-								</select>
-								<span asp-validation-for="ParentOne" class="field-validation-error text-danger"></span>
-							</div>
-						</div>
-						<div class="row mb-3">
-							<div class="col col-3 d-flex align-items-center">
-								<label asp-for="Partner" class="control-label "></label>
-							</div>
-							<div class="col">
-								<select asp-for="Partner" class="form-control">
-									<option>None</option>
-									<option>None</option>
-									<option>None</option>
-									<option>None</option>
-									<option>None</option>
-								</select>
-								<span asp-validation-for="Partner" class="field-validation-error text-danger"></span>
-							</div>
-						</div>*@
 					</div>
+					<div class="row mb-3">
+						<div class="col col-3 d-flex align-items-center">
+							<label class="control-label">Last name</label>
+						</div>
+						<div class="col form-group">
+							<input type="text" id="inputLastName" class="form-control" placeholder="Last name" />
+							<span class="field-validation-error text-danger"></span>
+						</div>
+					</div>
+				</div>
 
-					<div class="d-flex justify-content-end align-self-end">
-						<button type="button" class="btn-modal btn btn-primary">Save</button>
-						<button type="button" class="btn-modal btn btn-danger">Delete</button>
-						<button type="button" class="btn-modal btn btn-outline-dark" data-dismiss="modal">Cancel</button>
-					</div>
-				</form>
+				<div class="d-flex justify-content-end align-self-end">
+					<button type="button" class="btn-modal btn btn-primary" onclick="PersistPerson()">Save</button>
+					@*<button type="button" class="btn-modal btn btn-danger">Delete</button>*@
+					<button type="button" class="btn-modal btn btn-outline-dark" data-dismiss="modal">Cancel</button>
+				</div>
 			</div>
 		</div>
 	</div>
